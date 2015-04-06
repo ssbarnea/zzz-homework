@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.http import Http404
-from models import Topic, User, Message, Subscription
+from homework.models import Topic, User, Message, Subscription
 import logging
 import json
+import codecs
 
 def fallback(request):
     return Http404()
@@ -80,7 +81,8 @@ def post_message(request, topic):
         if created:
             t.save()
         subs = Subscription.objects.filter(topic=t)
-        d = json.loads(request.body)
+        reader = codecs.getreader("utf-8")
+        d = json.load(reader(request))
         msg = d['message']
         for sub in subs:
             Message(body=msg, user=sub.user, topic=t).save()
