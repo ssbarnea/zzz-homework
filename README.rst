@@ -7,6 +7,14 @@ Getting the code
 
 git clone https://github.com/ssbarnea/zzz-homework.git
 
+Installing
+~~~~~~~~~~
+
+# for Mac OS X only:
+# brew install libevent
+
+pip install -r requirements.txt
+
 Testing
 ~~~~~~~
 

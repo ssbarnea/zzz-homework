@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'homework',
+    #'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,7 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'homework.urls'
@@ -69,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'homework.wsgi.application'
+WSGI_APPLICATION = 'homeworkapp.wsgi.application'
 
 
 # Database
@@ -87,6 +88,8 @@ TEST = {
         'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3'),
 
 }
+
+#TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

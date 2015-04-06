@@ -1,6 +1,7 @@
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.http import Http404
-from ..models import Topic, User, Message, Subscription
+from models import Topic, User, Message, Subscription
 import logging
 import json
 
