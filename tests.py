@@ -40,3 +40,22 @@ class WebClientTestCase(TestCase):
         # 2nd time we need to get no messages for john (204 code)
         r = self.c.get(r'/economy/john/')
         self.assertEqual(r.status_code, 204, msg=r.reason_phrase)
+
+        # unsubcribe user from topic
+        r = self.c.delete(r'/economy/john/')
+        self.assertEqual(r.status_code, 200, msg=r.reason_phrase)
+
+        # re-unsubcribe user from topic (should get 404)
+        r = self.c.delete(r'/economy/john/')
+        self.assertEqual(r.status_code, 404, msg=r.reason_phrase)
+
+        # publish a new message
+        json_str = json.dumps({"message": "APPL goes down!"})
+        r = self.c.post('/economy', data=json_str, content_type='application/json',
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+            )
+        self.assertEqual(r.status_code, 201, msg=r.reason_phrase)
+
+        # now we should NOT get this message for john because he unsubscribed
+        r = self.c.get(r'/economy/john/')
+        self.assertEqual(r.status_code, 204, msg=r.reason_phrase)

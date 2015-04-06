@@ -47,6 +47,29 @@ def page(request, topic, user):
         if created:
             s.save()
         return HttpResponse(reason='POST: topic=%s user=%s subscription=%s' % (t.id, u.id, s.id), status=201)
+
+    elif request.method == 'DELETE':
+
+        try:
+            topic = Topic.objects.get(name=topic)
+        except:
+            return HttpResponse(reason="No topic found", status=404)
+
+        try:
+            user = User.objects.get(name=user)
+        except:
+            return HttpResponse(reason="No user found", status=404)
+
+
+        subs = Subscription.objects.filter(topic=topic, user=user)
+        if not subs:
+            return HttpResponse(reason="No subscription found", status=404)
+
+        for sub in subs:
+            sub.delete()
+        return HttpResponse(status=200)
+
+
     else:
         raise Http404()
 
