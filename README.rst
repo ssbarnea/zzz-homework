@@ -1,3 +1,9 @@
+.. image:: https://api.travis-ci.org/ssbarnea/zzz-homework.svg?branch=master
+        :target: https://travis-ci.org/ssbarnea/zzz-homework
+
+.. image:: https://img.shields.io/coveralls/ssbarnea/zzz-homework.svg
+        :target: https://coveralls.io/r/ssbarnea/zzz-homework
+
 ===============================
 Homework : Basic HTTP messaging
 ===============================
