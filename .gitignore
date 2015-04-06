@@ -1,0 +1,12 @@
+*.pyc
+*.egg
+.coverage.*
+dist/
+reports/
+build/
+docs/_build
+*.egg-info/
+tests/test-reports-*/*
+reports
+tests/settings.py
+*.sqlite3
